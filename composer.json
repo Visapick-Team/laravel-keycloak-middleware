@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Alireza\\Keycloak\\": "src/"
+            "Pickmap\\Keycloak\\": "src/"
         }
     },
     "authors": [

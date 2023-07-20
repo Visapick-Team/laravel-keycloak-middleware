@@ -1,6 +1,6 @@
 <?php
 
-namespace Alireza\Keycloak;
+namespace Pickmap\Keycloak;
 use Illuminate\Support\ServiceProvider;
 
 class KeycloakMiddlewareServiceProvider extends ServiceProvider

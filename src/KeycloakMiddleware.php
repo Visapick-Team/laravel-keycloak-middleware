@@ -1,6 +1,6 @@
 <?php
 
-namespace Alireza\Keycloak;
+namespace Pickmap\Keycloak;
 
 use Closure;
 use Illuminate\Http\Request;
