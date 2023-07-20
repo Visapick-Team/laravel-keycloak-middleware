@@ -1,0 +1,29 @@
+{
+    "name": "pickmap/keycloak-middleware",
+    "description": "keycloak",
+    "keywords": [
+        "laravel",
+        "keycloak",
+        "middleware",
+        "laravel-auth",
+        "microservice",
+        "PHP"
+    ],
+    "license": "MIT",
+    "require": {
+        "laravel/framework": "^8.0",
+        "firebase/php-jwt": "^6.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Alireza\\Keycloak\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "alireza salehi",
+            "email": "aliunity751@gmail.com",
+            "homepage": "https://github.com/salehialireza"
+        }
+    ]
+}
