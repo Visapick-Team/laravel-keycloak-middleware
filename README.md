@@ -44,3 +44,20 @@ Route::get('/', function () {
     dd(request()->all());
 })->middleware('keycloak-middleware');
 ```
+
+## Scope And Role
+Also, you can limit the access of users by sending the required scopes or roles 
+### " * " means all (role or scope)
+```php
+Route::group(['prefix' => 'v1','middleware' => 'keycloak-middleware:*,*'],function(){
+    #  routes
+});
+
+Route::group(['prefix' => 'v1','middleware' => 'keycloak-middleware:admin,*'],function(){
+    #  routes
+});
+
+Route::group(['prefix' => 'v1','middleware' => 'keycloak-middleware:admin|user,view.profile|send.email'],function(){
+    #  routes
+});
+```
