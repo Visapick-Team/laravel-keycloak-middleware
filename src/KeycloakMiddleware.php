@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
+use Pickmap\Responder\Res;
 
 class KeycloakMiddleware
 {
@@ -30,23 +31,13 @@ class KeycloakMiddleware
 
         if($validator->fails())
         {
-            return Response()->json(
-                [
-                'has_error' => true,
-                'errors' => $validator->errors()
-                ] , HttpResponse::HTTP_UNAUTHORIZED
-            );
+            return Res::error('error',$validator->errors(),HttpResponse::HTTP_UNAUTHORIZED);
         }
 
         // You do not have access
         if ($this->accessDenied($request,$scopes,$roles)) 
         {
-            return Response()->json(
-                [
-                'has_error' => true,
-                'errors' => 'Access Denied'
-                ] , HttpResponse::HTTP_FORBIDDEN
-            );
+            return Res::error('Access Denied',null,HttpResponse::HTTP_FORBIDDEN);
         }
 
 
