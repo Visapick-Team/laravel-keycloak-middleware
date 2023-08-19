@@ -20,8 +20,19 @@ class TokenValidator implements ValidationRule
             $publicKeyConfig
             -----END PUBLIC KEY-----
             EOD;            
-            $decoded = JWT::decode($token, new Key($publicKey, 'RS256'));
-            request()->merge(['token_data'=> (array)$decoded ,'uuid' => $decoded->sub]);
+
+            $explodeToken = explode('.',$token);
+            $tokenData    = base64_decode($explodeToken[1]);
+            $tokenData    = (array)json_decode($tokenData);
+            if (config('keycloak-middleware.public_key')) 
+            {
+                $tokenData = JWT::decode($token, new Key($publicKey, 'RS256'));
+            }
+
+            request()->merge([
+                'token_data'=> $tokenData ,
+                'uuid' => is_array($tokenData) ? $tokenData['sub'] : $tokenData->sub
+            ]);
         } 
         catch (Exception $e) 
         {
